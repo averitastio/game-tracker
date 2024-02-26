@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <h1>Game Tracker Page</h1>
 
 <h5>Name:</h5>
@@ -5,3 +6,27 @@
 <p></p>
 <h5>Class:</h5>
 <p>{{ class }}</p>
+
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Date Added</th>
+    </tr>
+    {% for game in games %}
+    <tr>
+      <td>{{game.title}}</td>
+      <td>{{game.price}}</td>
+      <td>{{game.description}}</td>
+      <td>{{game.date_added}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  
+  <br />
+  
+  <a href="{% url 'main:create_game' %}">
+    <button>Add New Game</button>
+  </a>
+{% endblock content %}
