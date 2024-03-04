@@ -16,7 +16,6 @@
 - MVC adalah singkatan dari Model-View-Controller. MVT adalah singkatan dari Model-View-Template. MVVM adalah singkatan dari Model-View-ViewModel
 - Perbedaan antara MVC, MVT, dan MVVM yaitu pada bagian Controller, Template, dan juga ViewModelnya. Controller pada MVC berfungsi sebagai alat komunikasi antar view dan model.
 Template pada MVT berfungsi untuk mengatur tampilan UI (user interface). ViewModel pada MVVM berfungsi untuk menghubungkan View dan Model.
-<<<<<<< HEAD
 
 -------------------------------------------------------------------------------------------------------
 
@@ -32,5 +31,3 @@ Template pada MVT berfungsi untuk mengatur tampilan UI (user interface). ViewMod
 ![alt text](image-2.png)
 
 ![alt text](image-3.png)
-=======
->>>>>>> 7e351fb4a96d03833138f17fe264112c430646e6
