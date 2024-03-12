@@ -37,7 +37,7 @@ def create_game(request):
      return redirect('main:show_main')
 
  context = {'form': form}
- return render(request, "create_gane.html", context)
+ return render(request, "create_game.html", context)
 
 def show_xml(request):
     data = Game.objects.all()
@@ -87,3 +87,24 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def update_game(request, id):
+    game = Game.objects.get(pk = id)
+
+    form = GameForm(request.POST or None, instance=game)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "update_game.html", context)
+
+def delete_game(request, id):
+    # Get data berdasarkan ID
+    game = Game.objects.get(pk = id)
+    # Hapus data
+    game.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))

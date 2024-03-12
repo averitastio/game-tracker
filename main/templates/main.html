@@ -23,6 +23,18 @@
       <td>{{game.price}}</td>
       <td>{{game.description}}</td>
       <td>{{game.date_added}}</td>
+      <td>
+        <a href="{% url 'main:update_game' game.pk %}">
+            <button type="button" class="btn btn-light">
+                Edit
+            </button>
+        </a>
+        <a href="{% url 'main:delete_game' game.pk %}">
+              <button type="button" class="btn btn-danger">
+                  Delete
+              </button>
+        </a>
+    </td>
     </tr>
     {% endfor %}
   </table>
@@ -30,10 +42,10 @@
   <br />
   
   <a href="{% url 'main:create_game' %}">
-    <button>Add New Game</button>
+    <button class="btn btn-info">Add New Game</button>
   </a>
   <a href="{% url 'main:logout' %}">
-    <button>Logout</button>
+    <button class="btn btn-warning">Logout</button>
     <h5>Sesi terakhir login: {{ last_login }}</h5>
   </a>
   

@@ -3,6 +3,8 @@ from main.views import show_main, create_game, show_xml, show_json, show_xml_by_
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import update_game
+from main.views import delete_game
 app_name = 'main'
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('update-game/<int:id>', update_game, name='update_game'),
+    path('delete/<int:id>', delete_game, name='delete_game'), 
 ]
