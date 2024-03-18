@@ -12,14 +12,14 @@ from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
 @login_required(login_url='/login')
 def show_main(request):
     games = Game.objects.filter(user=request.user)
 
     context = {
-        'name': 'Nazwa Allysa',
+         'name': request.user.username,
         'class': 'PBP A',
         'games': games,
         'last_login': request.COOKIES['last_login'],
@@ -108,3 +108,18 @@ def delete_game(request, id):
     game.delete()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
+
+@csrf_exempt
+def add_game_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_game = Game(title=title, price=price, description=description, user=user)
+        new_game.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()

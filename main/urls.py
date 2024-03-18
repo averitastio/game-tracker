@@ -5,6 +5,7 @@ from main.views import login_user
 from main.views import logout_user
 from main.views import update_game
 from main.views import delete_game
+from main.views import add_game_ajax
 app_name = 'main'
 
 urlpatterns = [
@@ -19,4 +20,5 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('update-game/<int:id>', update_game, name='update_game'),
     path('delete/<int:id>', delete_game, name='delete_game'), 
+    path('create-game-ajax/', add_game_ajax, name='add_game_ajax'),
 ]
