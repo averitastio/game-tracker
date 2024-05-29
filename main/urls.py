@@ -6,6 +6,7 @@ from main.views import logout_user
 from main.views import update_game
 from main.views import delete_game
 from main.views import add_game_ajax
+from main.views import create_game_flutter
 app_name = 'main'
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path('update-game/<int:id>', update_game, name='update_game'),
     path('delete/<int:id>', delete_game, name='delete_game'), 
     path('create-game-ajax/', add_game_ajax, name='add_game_ajax'),
+    path('create-flutter/', create_game_flutter, name='create_game_flutter'),
 ]

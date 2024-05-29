@@ -11,16 +11,18 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotFound
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+import json
+from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def show_main(request):
     games = Game.objects.filter(user=request.user)
 
     context = {
-         'name': request.user.username,
-        'class': 'PBP A',
+        'name': request.user.username,
         'games': games,
         'last_login': request.COOKIES['last_login'],
     }
@@ -123,3 +125,22 @@ def add_game_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def create_game_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+
+        new_game = Game.objects.create(
+            user = request.user,
+            title = data["title"],
+            price = int(data["price"]),
+            description = data["description"]
+        )
+
+        new_game.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
